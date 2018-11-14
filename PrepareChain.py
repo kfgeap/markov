@@ -89,6 +89,7 @@ class PrepareChain(object):
         while node:
             if node.posid != 0:
                 morpheme = node.surface
+                morphemes.append(morpheme)
             node = node.next
         return morphemes
 

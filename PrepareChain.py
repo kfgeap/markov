@@ -28,7 +28,7 @@ class PrepareChain(object):
         初期化メソッド
         @param text チェーンを生成するための文章
         """
-        if isinstance(text, str):
+        if isinstance(text, bytes):
             text = text.decode("utf-8")
         self.text = text
 
@@ -85,13 +85,11 @@ class PrepareChain(object):
         @return 形態素で分割された配列
         """
         morphemes = []
-        sentence = sentence.encode("utf-8")
         node = self.tagger.parseToNode(sentence)
         while node:
             if node.posid != 0:
-                morpheme = node.surface.decode("utf-8")
-                morphemes.append(morpheme)
-            node = node.__next__
+                morpheme = node.surface.decode
+            node = node.next
         return morphemes
 
     def _make_triplet(self, morphemes):
